@@ -11,8 +11,8 @@ export async function generateStaticParams() {
   }));
 }
 
-export default function PatternPage({ params }: { params: { slug: string } }) {
-  // Extract the slug directly - no need for async/await since this is static data
+export default async function PatternPage({ params }: { params: { slug: string } }) {
+  // Extract the slug - we've made the function async now so params.slug is safe to use
   const { slug } = params;
   
   // Find the pattern
@@ -28,7 +28,7 @@ export default function PatternPage({ params }: { params: { slug: string } }) {
   const nextPattern = currentIndex < patterns.length - 1 ? patterns[currentIndex + 1] : null;
 
   return (
-    <main className="max-w-4xl mx-auto py-8 px-4">
+    <main className="max-w-6xl mx-auto py-8 px-4">
       {/* Breadcrumb Navigation */}
       <nav className="flex items-center space-x-2 text-sm text-gray-500 mb-6">
         <Link href="/" className="hover:text-blue-600">Home</Link>

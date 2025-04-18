@@ -20,3 +20,12 @@ export interface Pattern {
     relatedPatterns: string[];
   };
 }
+
+export interface Category {
+  id: string;
+  title: string;
+  description: string;
+  slug: string;
+  color: string;
+  image: string;
+}

@@ -22,8 +22,16 @@ module.exports = {
         },
       },
       fontFamily: {
-        sans: ['var(--font-geist-sans)', 'ui-sans-serif', 'system-ui'],
-        mono: ['var(--font-geist-mono)', 'ui-monospace', 'SFMono-Regular'],
+        sans: ['var(--font-inter)', 'ui-sans-serif', 'system-ui'],
+      },
+      letterSpacing: {
+        tightest: '-.075em',
+        tighter: '-.05em',
+        tight: '-.025em',
+        normal: '0',
+        wide: '.025em',
+        wider: '.05em',
+        widest: '.25em',
       },
     },
   },

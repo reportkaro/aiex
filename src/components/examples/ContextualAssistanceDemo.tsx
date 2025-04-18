@@ -103,7 +103,7 @@ const ContextualAssistanceDemo = () => {
           value={text}
           onChange={handleInputChange}
           onKeyDown={handleKeyDown}
-          className="w-full min-h-[150px] p-3 border rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 resize-none"
+          className="w-full min-h-[180px] p-3 border rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 resize-none"
           placeholder="Start typing to see contextual assistance..."
         />
         

@@ -1,20 +1,13 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
-import Link from 'next/link';
-import { motion, useScroll, useTransform, useMotionValue, useSpring } from 'framer-motion';
+import { useRef, useEffect, useState } from 'react';
+import { motion, useMotionValue, useSpring, useTransform, animate } from 'framer-motion';
 import Button from '../ui/Button';
 
 export default function Hero() {
-  const [currentWordIndex, setCurrentWordIndex] = useState(0);
-  const rotatingWords = ['human-centered', 'intuitive', 'trustworthy', 'collaborative'];
   const containerRef = useRef<HTMLDivElement>(null);
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
-  
-  // Parallax effect for the hero background
-  const { scrollY } = useScroll();
-  const y = useTransform(scrollY, [0, 500], [0, 150]);
   
   // Smooth spring animation for mouse movement
   const springConfig = { damping: 25, stiffness: 150 };
@@ -31,13 +24,26 @@ export default function Hero() {
     }
   };
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentWordIndex((prevIndex) => (prevIndex + 1) % rotatingWords.length);
-    }, 3000);
-    
-    return () => clearInterval(interval);
-  }, []);
+  // Pulse animation
+  const pulseAnimation = {
+    scale: [1, 1.05, 1],
+    opacity: [0.5, 0.7, 0.5],
+    transition: {
+      duration: 8,
+      ease: "easeInOut",
+      repeat: Infinity,
+    }
+  };
+
+  // Rotate animation
+  const rotateAnimation = {
+    rotate: [0, 360],
+    transition: {
+      duration: 40,
+      ease: "linear",
+      repeat: Infinity,
+    }
+  };
 
   // Handle mouse movement for interactive elements
   const handleMouseMove = (e: React.MouseEvent) => {
@@ -49,31 +55,156 @@ export default function Hero() {
     mouseY.set(y - height / 2);
   };
 
+  // Handle scroll to Discover section
+  const scrollToDiscover = () => {
+    const discoverSection = document.getElementById('categories');
+    if (discoverSection) {
+      discoverSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  // Generate particles
+  const [particles, setParticles] = useState<{ x: number; y: number; size: number; color: string }[]>([]);
+  
+  useEffect(() => {
+    const generateParticles = () => {
+      const newParticles = [];
+      const colors = [
+        'rgba(99, 102, 241, 0.4)', // indigo-500
+        'rgba(126, 34, 206, 0.4)',  // purple-700
+        'rgba(219, 39, 119, 0.4)',  // pink-600
+        'rgba(79, 70, 229, 0.3)',   // indigo-600
+        'rgba(147, 51, 234, 0.3)'   // purple-600
+      ];
+      
+      for (let i = 0; i < 15; i++) {
+        newParticles.push({
+          x: Math.random() * 100,
+          y: Math.random() * 100,
+          size: Math.random() * 50 + 10,
+          color: colors[Math.floor(Math.random() * colors.length)]
+        });
+      }
+      
+      setParticles(newParticles);
+    };
+    
+    generateParticles();
+  }, []);
+
   return (
     <motion.div 
       ref={containerRef}
       onMouseMove={handleMouseMove}
-      className="relative min-h-[90vh] flex items-center justify-center overflow-hidden" 
-      style={{ y }}
+      className="relative min-h-[80vh] flex items-center justify-center overflow-hidden pt-16"
     >
       {/* Background elements */}
-      <div className="absolute inset-0 bg-gradient-to-b from-indigo-50 via-white to-purple-50">
-        <div className="absolute inset-0 opacity-30">
+      <div className="absolute inset-0 bg-gradient-to-b from-pink-50 via-white to-purple-50">
+        <motion.div 
+          className="absolute inset-0 opacity-30"
+          animate={{
+            background: [
+              'linear-gradient(120deg, rgba(219, 39, 119, 0.1), rgba(124, 58, 237, 0.05))',
+              'linear-gradient(240deg, rgba(219, 39, 119, 0.05), rgba(124, 58, 237, 0.1))',
+              'linear-gradient(360deg, rgba(219, 39, 119, 0.1), rgba(124, 58, 237, 0.05))'
+            ]
+          }}
+          transition={{
+            duration: 20,
+            repeat: Infinity,
+            repeatType: "reverse"
+          }}
+        >
           <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
             <defs>
               <radialGradient id="herogradient" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
-                <stop offset="0%" stopColor="rgba(99, 102, 241, 0.3)" />
-                <stop offset="100%" stopColor="rgba(168, 85, 247, 0.1)" />
+                <motion.stop 
+                  offset="0%" 
+                  stopColor="rgba(244, 114, 182, 0.2)"
+                  animate={{
+                    stopColor: [
+                      "rgba(244, 114, 182, 0.2)",
+                      "rgba(168, 85, 247, 0.2)",
+                      "rgba(99, 102, 241, 0.2)",
+                      "rgba(244, 114, 182, 0.2)"
+                    ]
+                  }}
+                  transition={{
+                    duration: 10,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                />
+                <motion.stop 
+                  offset="100%" 
+                  stopColor="rgba(168, 85, 247, 0.1)"
+                  animate={{
+                    stopColor: [
+                      "rgba(168, 85, 247, 0.1)",
+                      "rgba(99, 102, 241, 0.1)",
+                      "rgba(244, 114, 182, 0.1)",
+                      "rgba(168, 85, 247, 0.1)"
+                    ]
+                  }}
+                  transition={{
+                    duration: 10,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                />
               </radialGradient>
             </defs>
             <rect x="0" y="0" width="100" height="100" fill="url(#herogradient)" />
           </svg>
-        </div>
+        </motion.div>
+        
+        {/* Particles */}
+        {particles.map((particle, index) => (
+          <motion.div
+            key={index}
+            className="absolute rounded-full blur-xl"
+            style={{
+              left: `${particle.x}%`,
+              top: `${particle.y}%`,
+              width: particle.size,
+              height: particle.size,
+              background: particle.color
+            }}
+            animate={{
+              x: [0, Math.random() * 30 - 15],
+              y: [0, Math.random() * 30 - 15],
+            }}
+            transition={{
+              duration: Math.random() * 10 + 10,
+              repeat: Infinity,
+              repeatType: "reverse",
+              ease: "easeInOut",
+              delay: Math.random() * 5
+            }}
+          />
+        ))}
+        
+        {/* Animated grid */}
+        <motion.div 
+          className="absolute inset-0 opacity-10"
+          style={{
+            backgroundImage: 'linear-gradient(rgba(99, 102, 241, 0.2) 1px, transparent 1px), linear-gradient(90deg, rgba(99, 102, 241, 0.2) 1px, transparent 1px)',
+            backgroundSize: '40px 40px'
+          }}
+          animate={{
+            backgroundPosition: ['0px 0px', '40px 40px']
+          }}
+          transition={{
+            duration: 20,
+            repeat: Infinity,
+            ease: "linear"
+          }}
+        />
       </div>
       
       {/* 3D decorative elements */}
       <motion.div
-        className="absolute left-[15%] top-[20%] w-24 h-24 md:w-36 md:h-36 rounded-full bg-gradient-to-r from-blue-400 to-indigo-500 opacity-20 blur-2xl"
+        className="absolute left-[15%] top-[20%] w-24 h-24 md:w-36 md:h-36 rounded-full bg-gradient-to-r from-pink-300 to-pink-400 opacity-20 blur-2xl"
         animate={floatingAnimation}
       />
       <motion.div
@@ -84,107 +215,71 @@ export default function Hero() {
         }}
       />
       <motion.div
-        className="absolute right-[25%] top-[10%] w-16 h-16 md:w-24 md:h-24 rounded-full bg-gradient-to-r from-yellow-400 to-orange-500 opacity-20 blur-xl"
+        className="absolute right-[25%] top-[10%] w-16 h-16 md:w-24 md:h-24 rounded-full bg-gradient-to-r from-yellow-400 to-orange-300 opacity-20 blur-xl"
         animate={{
           ...floatingAnimation,
           transition: { ...floatingAnimation.transition, delay: 0.8 }
         }}
       />
       
+      {/* New decorative elements */}
+      <motion.div
+        className="absolute left-[25%] bottom-[15%] w-20 h-20 md:w-32 md:h-32 rounded-full bg-gradient-to-r from-indigo-400 to-indigo-600 opacity-20 blur-2xl"
+        animate={pulseAnimation}
+      />
+      <motion.div
+        className="absolute left-[65%] top-[30%] w-28 h-28 md:w-40 md:h-40 rounded-full bg-gradient-to-r from-purple-500 to-indigo-500 opacity-10 blur-3xl"
+        animate={pulseAnimation}
+      />
+      
+      {/* Rotating ring */}
+      <motion.div
+        className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] md:w-[500px] md:h-[500px] rounded-full border-[1px] border-indigo-300 opacity-20"
+        animate={rotateAnimation}
+      />
+      <motion.div
+        className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] h-[350px] md:w-[600px] md:h-[600px] rounded-full border-[1px] border-purple-300 opacity-10"
+        animate={{
+          ...rotateAnimation,
+          transition: { ...rotateAnimation.transition, duration: 50 }
+        }}
+      />
+      
       {/* Main content */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32 relative z-10">
-        <div className="text-center">
+      <div className="max-w-screen-xl mx-auto px-8 md:px-12 lg:px-16 py-16 md:py-20 relative z-10">
+        <div className="text-center max-w-4xl mx-auto">
           <motion.h1 
-            className="text-4xl sm:text-6xl md:text-7xl font-bold text-gray-900 leading-tight"
+            className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-gray-900 mb-6 tracking-tight"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
-            Design Patterns for
-            <div className="h-20 md:h-24 mt-2 mb-4 relative">
-              <div className="relative h-full flex items-center justify-center overflow-hidden">
-                {rotatingWords.map((word, index) => (
-                  <motion.span
-                    key={word}
-                    className="absolute w-full text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600 font-bold"
-                    initial={{ opacity: 0, y: 40 }}
-                    animate={{ 
-                      opacity: currentWordIndex === index ? 1 : 0,
-                      y: currentWordIndex === index ? 0 : 40
-                    }}
-                    transition={{ 
-                      duration: 0.6, 
-                      ease: [0.22, 1, 0.36, 1] 
-                    }}
-                  >
-                    {word}
-                  </motion.span>
-                ))}
-              </div>
-            </div>
-            <motion.span
-              className="block"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
-            >
-              AI Experiences
-            </motion.span>
+            Discover AI Design<br />
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-violet-500">
+              Inspiration & Patterns
+            </span>
           </motion.h1>
           
           <motion.p 
-            className="mt-6 max-w-2xl mx-auto text-xl md:text-2xl text-gray-600 leading-relaxed"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.5 }}
-          >
-            A curated collection of design patterns to help you create more effective 
-            and innovative human-AI interactions.
-          </motion.p>
-          
-          <motion.div 
-            className="mt-10 flex flex-col sm:flex-row justify-center gap-4"
+            className="text-xl md:text-2xl text-gray-600 mb-10 max-w-2xl mx-auto"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.7 }}
+            transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
           >
-            <Link href="/patterns">
-              <Button 
-                variant="gradient" 
-                size="lg"
-                className="text-base px-8 py-4 shadow-lg shadow-indigo-500/20 hover:shadow-indigo-500/40 transition-all duration-300"
-              >
-                Explore Patterns
-              </Button>
-            </Link>
-            
-            <Link href="/contribute">
-              <Button 
-                variant="outline" 
-                size="lg"
-                className="text-base px-8 py-4 hover:bg-indigo-50 transition-all duration-300"
-              >
-                Submit a Pattern
-              </Button>
-            </Link>
-          </motion.div>
+            Explore real-world examples of effective AI interfaces and learn from the best implementations
+          </motion.p>
+          
+          <div className="mt-10 flex justify-center">
+            <Button 
+              variant="gradient" 
+              size="lg"
+              className="text-base px-8 py-4"
+              onClick={scrollToDiscover}
+            >
+              Explore Patterns
+            </Button>
+          </div>
         </div>
-      </div>
-      
-      {/* Wave divider */}
-      <div className="absolute bottom-0 left-0 right-0 w-full overflow-hidden leading-none">
-        <svg className="w-full h-auto" viewBox="0 0 1200 120" preserveAspectRatio="none">
-          <path 
-            d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" 
-            fill="#ffffff"
-            opacity=".8"
-          ></path>
-          <path 
-            d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" 
-            fill="#ffffff"
-            opacity=".5"
-          ></path>
-        </svg>
       </div>
     </motion.div>
   );

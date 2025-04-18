@@ -25,13 +25,13 @@ export default function ClientPage({ patternSlug }: ClientPageProps) {
 
   return (
     <section className="mb-10">
-      <div className="flex items-center mb-6">
+      <div className="flex items-center mb-8">
         <div className="bg-blue-500 w-1 h-8 mr-3"></div>
         <h2 className="text-2xl font-bold">Interactive Examples</h2>
       </div>
       
-      <div className="grid grid-cols-1 gap-8">
-        <div className="bg-white border border-gray-200 rounded-lg shadow-sm overflow-hidden">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="bg-white border border-gray-200 rounded-lg shadow-sm overflow-hidden h-full">
           <div className="bg-gradient-to-r from-blue-50 to-white p-5 border-b border-gray-200">
             <h3 className="text-xl font-semibold text-blue-800">Text Editor with Smart Suggestions</h3>
             <p className="text-gray-700 mt-2">
@@ -46,7 +46,7 @@ export default function ClientPage({ patternSlug }: ClientPageProps) {
           </div>
         </div>
         
-        <div className="bg-white border border-gray-200 rounded-lg shadow-sm overflow-hidden">
+        <div className="bg-white border border-gray-200 rounded-lg shadow-sm overflow-hidden h-full">
           <div className="bg-gradient-to-r from-blue-50 to-white p-5 border-b border-gray-200">
             <h3 className="text-xl font-semibold text-blue-800">Search with Contextual Help</h3>
             <p className="text-gray-700 mt-2">

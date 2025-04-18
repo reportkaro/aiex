@@ -22,7 +22,7 @@ export default function PatternsPage() {
   });
 
   return (
-    <main className="max-w-4xl mx-auto py-8 px-4">
+    <main className="max-w-6xl mx-auto py-8 px-4">
       {/* Breadcrumb Navigation */}
       <nav className="flex items-center space-x-2 text-sm text-gray-500 mb-4">
         <Link href="/" className="hover:text-blue-600">Home</Link>
