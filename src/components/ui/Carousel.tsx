@@ -2,7 +2,7 @@
 import { useState } from "react";
 
 interface Example {
-  imagePath: string;
+  imagePath?: string;
   title: string;
   description: string;
   imageCredit?: string;
