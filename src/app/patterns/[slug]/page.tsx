@@ -11,9 +11,13 @@ export async function generateStaticParams() {
   }));
 }
 
-export default async function PatternPage({ params }: { params: { slug: string } }) {
-  // Extract the slug - we've made the function async now so params.slug is safe to use
-  const { slug } = params;
+type PageProps = {
+  params: Promise<{ slug: string }>
+}
+
+export default async function PatternPage({ params }: PageProps) {
+  // Await the params
+  const { slug } = await params;
   
   // Find the pattern
   const pattern = patterns.find((p) => p.slug === slug);
