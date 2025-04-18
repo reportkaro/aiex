@@ -1,4 +1,12 @@
-import { Category } from '../types';
+// Define the Category type directly in this file to avoid import issues
+interface Category {
+  id: string;
+  title: string;
+  description: string;
+  slug: string;
+  color: string;
+  image: string;
+}
 
 const categories: Category[] = [
   {
