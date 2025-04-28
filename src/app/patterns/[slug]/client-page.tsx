@@ -19,8 +19,13 @@ const ProgressiveDisclosureDemo = dynamic(
   { ssr: false }
 );
 
-const HumanInTheLoopDemo = dynamic(
-  () => import('@/components/examples/HumanInTheLoopDemo'),
+const TextModerationDemo = dynamic(
+  () => import('@/components/examples/HumanInTheLoopDemo').then(mod => mod.TextModerationDemo),
+  { ssr: false }
+);
+
+const ImageModerationDemo = dynamic(
+  () => import('@/components/examples/HumanInTheLoopDemo').then(mod => mod.ImageModerationDemo),
   { ssr: false }
 );
 
@@ -239,16 +244,17 @@ export default function ClientPage({ patternSlug }: ClientPageProps) {
         </div>
         <div className="mb-6 bg-gray-50 p-5 rounded-lg border border-gray-200">
           <p className="text-gray-700">
-            Below is an interactive example that demonstrates a human-in-the-loop workflow. Try it out to see how human oversight and intervention can be integrated into AI-powered systems.
+            Below are interactive examples that demonstrate human-in-the-loop workflows for both text and image moderation. Try them out to see how human oversight and intervention can be integrated into AI-powered systems.
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {/* Text Post Moderation Example */}
           <div className="bg-white border border-gray-200 rounded-lg shadow-sm overflow-hidden h-full">
             <div className="bg-gray-50 p-5 border-b border-gray-200">
-              <h3 className="text-xl font-semibold text-gray-800">AI Moderation with Human Review</h3>
+              <h3 className="text-xl font-semibold text-gray-800">Text Post Moderation</h3>
               <div className="mt-2">
                 <p className="text-gray-700 text-sm mb-2">
-                  This example simulates an AI system that flags content for review, allowing a human to approve, reject, or override the AI's decision.
+                  Review AI-flagged social media posts and make the final moderation decision. This example simulates an AI system that flags text content for review, allowing a human to approve, reject, or override the AI's decision.
                 </p>
                 <div className="bg-white rounded-lg p-2 border border-gray-200 text-xs">
                   <p className="font-medium text-gray-700 mb-1">Try it yourself:</p>
@@ -260,10 +266,34 @@ export default function ClientPage({ patternSlug }: ClientPageProps) {
               </div>
             </div>
             <div className="p-4">
-              <HumanInTheLoopDemo />
+              <TextModerationDemo />
             </div>
             <div className="bg-gray-50 p-3 border-t border-gray-200 text-xs text-gray-600">
               <p className="font-medium">Key Takeaway: Human-in-the-loop systems combine AI efficiency with human judgment for safer, more reliable outcomes.</p>
+            </div>
+          </div>
+          {/* Image Moderation Example */}
+          <div className="bg-white border border-gray-200 rounded-lg shadow-sm overflow-hidden h-full">
+            <div className="bg-gray-50 p-5 border-b border-gray-200">
+              <h3 className="text-xl font-semibold text-gray-800">Image Moderation</h3>
+              <div className="mt-2">
+                <p className="text-gray-700 text-sm mb-2">
+                  Review AI-flagged user-uploaded images and make the final moderation decision. This example simulates an AI system that flags images for review, allowing a human to approve, reject, or override the AI's decision.
+                </p>
+                <div className="bg-white rounded-lg p-2 border border-gray-200 text-xs">
+                  <p className="font-medium text-gray-700 mb-1">Try it yourself:</p>
+                  <ul className="list-disc list-inside space-y-1 text-gray-600">
+                    <li>Review the AI's decision and choose to approve, reject, or override it</li>
+                    <li>See how the system logs human interventions for transparency</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div className="p-4">
+              <ImageModerationDemo />
+            </div>
+            <div className="bg-gray-50 p-3 border-t border-gray-200 text-xs text-gray-600">
+              <p className="font-medium">Key Takeaway: Human-in-the-loop review is crucial for visual content where AI may be less reliable or context is needed.</p>
             </div>
           </div>
         </div>

@@ -206,4 +206,6 @@ export default function HumanInTheLoopDemo() {
       <ImageModerationDemo />
     </div>
   );
-} 
+}
+
+export { TextModerationDemo, ImageModerationDemo }; 

@@ -16,8 +16,7 @@ type PageProps = {
 }
 
 export default async function PatternPage({ params }: PageProps) {
-  // Access params.slug directly without destructuring
-  const slug = params.slug;
+  const { slug } = params;
   
   // Find the pattern
   const pattern = patterns.find((p) => p.slug === slug);
