@@ -11,12 +11,9 @@ export async function generateStaticParams() {
   }));
 }
 
-type PageProps = {
-  params: { slug: string }
-}
-
-export default async function PatternPage({ params }: PageProps) {
-  const { slug } = params;
+export default async function PatternPage({ params }: { params: Promise<{ slug: string }> }) {
+  // Await the params to get the slug
+  const { slug } = await params;
   
   // Find the pattern
   const pattern = patterns.find((p) => p.slug === slug);
