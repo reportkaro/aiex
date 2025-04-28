@@ -15,7 +15,7 @@ const categories: Category[] = [
     description: "Provide timely help and suggestions based on the user's current task and needs",
     slug: "contextual-assistance",
     color: "blue",
-    image: "/images/examples/Code-completions-with-GitHub-Copilot-in-VS-Code-04-17-2025_05_05_PM.png"
+    image: "/images/examples/gitautocode.gif"
   },
   {
     id: "progressive-disclosure",
@@ -23,7 +23,7 @@ const categories: Category[] = [
     description: "Reveal information gradually to reduce cognitive load and complexity",
     slug: "progressive-disclosure",
     color: "green",
-    image: "/images/examples/Code-completions-with-GitHub-Copilot-in-VS-Code-04-17-2025_05_05_PM.png"
+    image: "/images/examples/loom-ai.gif"
   },
   {
     id: "human-in-the-loop",
@@ -31,7 +31,7 @@ const categories: Category[] = [
     description: "Balance automation with human oversight and intervention for critical decisions",
     slug: "human-in-the-loop",
     color: "amber",
-    image: "/images/examples/Code-completions-with-GitHub-Copilot-in-VS-Code-04-17-2025_05_05_PM.png"
+    image: "/images/examples/gitautocode.gif"
   },
   {
     id: "conversational-ui",
@@ -39,7 +39,7 @@ const categories: Category[] = [
     description: "Design natural, human-like interactions through chat and voice interfaces",
     slug: "conversational-ui",
     color: "purple",
-    image: "/images/examples/Code-completions-with-GitHub-Copilot-in-VS-Code-04-17-2025_05_05_PM.png"
+    image: "/images/examples/Smart-compose_Taco_Tuesday.gif"
   },
   {
     id: "transparent-feedback",
@@ -55,7 +55,7 @@ const categories: Category[] = [
     description: "Create interfaces that learn from user behavior and adjust accordingly",
     slug: "adaptive-interfaces",
     color: "gray",
-    image: "/images/examples/Code-completions-with-GitHub-Copilot-in-VS-Code-04-17-2025_05_05_PM.png"
+    image: "/images/examples/notion-ai.gif"
   }
 ];
 

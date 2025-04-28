@@ -4,6 +4,7 @@ import "./globals.css";
 import ScrollToTop from "@/components/ui/ScrollToTop";
 import { Suspense } from 'react';
 import PageTransition from "@/components/ui/PageTransition";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -13,7 +14,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "aiex.guide | AI Design Patterns and Inspiration",
+  title: "aiexd | AI Design Patterns and Inspiration",
   description: "Discover AI design inspiration and learn from real use cases",
 };
 
@@ -31,6 +32,7 @@ export default function RootLayout({
           </PageTransition>
         </Suspense>
         <ScrollToTop />
+        <SpeedInsights />
       </body>
     </html>
   );

@@ -1,3 +1,5 @@
+'use client';
+
 import Hero from '../components/sections/Hero';
 import PatternCategories from '../components/sections/PatternCategories';
 import Navbar from '../components/layout/Navbar';
