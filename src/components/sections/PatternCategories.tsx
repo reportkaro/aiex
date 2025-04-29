@@ -77,22 +77,6 @@ const getCardBorderStyle = (index: number) => {
 };
 
 const PatternCategories = () => {
-  // Animation variants
-  const container = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1
-      }
-    }
-  };
-  
-  const item = {
-    hidden: { opacity: 0, y: 20 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.5 } }
-  };
-
   return (
     <div id="categories" className="pt-4 pb-16">
       <motion.h2 
@@ -115,20 +99,16 @@ const PatternCategories = () => {
       </motion.h2>
       
       {/* Card grid with improved spacing */}
-      <motion.div 
+      <div 
         className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8"
-        variants={container}
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true }}
       >
         {categories.map((category, index) => (
-          <motion.div key={category.id} className="flex flex-col" variants={item}>
+          <div key={category.id} className="flex flex-col">
             <Link href={`/patterns/${category.slug}`}>
               <div className={`group relative p-[2px] rounded-2xl overflow-hidden bg-gradient-to-br ${getCardBorderStyle(index)}`}>
-                <div className="bg-white dark:bg-gray-900 rounded-2xl overflow-hidden relative p-4">
-                  {/* Card image container */}
-                  <div className="relative w-full h-80 overflow-hidden rounded-xl transition-transform duration-300 group-hover:scale-[1.02]">
+                <div className="bg-white dark:bg-gray-900 rounded-2xl overflow-hidden relative p-4 flex flex-col h-full">
+                  {/* Card image at the top */}
+                  <div className="relative w-full h-56 overflow-hidden rounded-xl transition-transform duration-300 group-hover:scale-[1.02] mb-4">
                     <Image 
                       src={category.image} 
                       alt={category.title}
@@ -137,23 +117,21 @@ const PatternCategories = () => {
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     />
                   </div>
+                  {/* Icon inside the card, above heading/description */}
+                  <div className={`h-10 w-10 rounded-xl overflow-hidden flex-shrink-0 mx-auto mb-3 relative ${getIconBgColor(category.id)}`}> 
+                    {getCategoryIcon(category.id)}
+                  </div>
+                  {/* Card heading and description below the icon */}
+                  <div>
+                    <h3 className="font-medium text-lg text-gray-900 mb-1 text-center">{category.title}</h3>
+                    <p className="text-gray-500 text-sm text-center">{category.description}</p>
+                  </div>
                 </div>
               </div>
             </Link>
-            
-            {/* App info section - below the card */}
-            <div className="flex items-center mt-4">
-              <div className={`h-10 w-10 rounded-xl overflow-hidden flex-shrink-0 mr-3 relative ${getIconBgColor(category.id)}`}>
-                {getCategoryIcon(category.id)}
-              </div>
-              <div>
-                <h3 className="font-medium text-lg text-gray-900">{category.title}</h3>
-                <p className="text-gray-500 text-sm mt-1 line-clamp-2">{category.description.split(' ').slice(0, 5).join(' ')}...</p>
-              </div>
-            </div>
-          </motion.div>
+          </div>
         ))}
-      </motion.div>
+      </div>
     </div>
   );
 };

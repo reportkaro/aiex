@@ -46,13 +46,19 @@ export default function Hero() {
   };
 
   // Handle mouse movement for interactive elements
+  // Throttle mouse movement using requestAnimationFrame
+  const mouseMoveFrame = useRef<number | null>(null);
   const handleMouseMove = (e: React.MouseEvent) => {
-    const { left, top, width, height } = containerRef.current?.getBoundingClientRect() || { left: 0, top: 0, width: 0, height: 0 };
-    const x = e.clientX - left;
-    const y = e.clientY - top;
-    
-    mouseX.set(x - width / 2);
-    mouseY.set(y - height / 2);
+    if (mouseMoveFrame.current !== null) {
+      cancelAnimationFrame(mouseMoveFrame.current);
+    }
+    mouseMoveFrame.current = requestAnimationFrame(() => {
+      const { left, top, width, height } = containerRef.current?.getBoundingClientRect() || { left: 0, top: 0, width: 0, height: 0 };
+      const x = e.clientX - left;
+      const y = e.clientY - top;
+      mouseX.set(x - width / 2);
+      mouseY.set(y - height / 2);
+    });
   };
 
   // Handle scroll to Discover section
@@ -77,7 +83,7 @@ export default function Hero() {
         'rgba(147, 51, 234, 0.3)'   // purple-600
       ];
       
-      for (let i = 0; i < 15; i++) {
+      for (let i = 0; i < 7; i++) { // Reduced from 15 to 7
         newParticles.push({
           x: Math.random() * 100,
           y: Math.random() * 100,
@@ -93,158 +99,48 @@ export default function Hero() {
   }, []);
 
   return (
-    <motion.div 
+    <div 
       ref={containerRef}
       onMouseMove={handleMouseMove}
       className="relative min-h-[80vh] flex items-center justify-center overflow-hidden pt-16"
     >
       {/* Background elements */}
       <div className="absolute inset-0 bg-gradient-to-b from-pink-50 via-white to-purple-50">
-        <motion.div 
-          className="absolute inset-0 opacity-30"
-          animate={{
-            background: [
-              'linear-gradient(120deg, rgba(219, 39, 119, 0.1), rgba(124, 58, 237, 0.05))',
-              'linear-gradient(240deg, rgba(219, 39, 119, 0.05), rgba(124, 58, 237, 0.1))',
-              'linear-gradient(360deg, rgba(219, 39, 119, 0.1), rgba(124, 58, 237, 0.05))'
-            ]
-          }}
-          transition={{
-            duration: 20,
-            repeat: Infinity,
-            repeatType: "reverse"
-          }}
-        >
-          <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
-            <defs>
-              <radialGradient id="herogradient" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
-                <motion.stop 
-                  offset="0%" 
-                  stopColor="rgba(244, 114, 182, 0.2)"
-                  animate={{
-                    stopColor: [
-                      "rgba(244, 114, 182, 0.2)",
-                      "rgba(168, 85, 247, 0.2)",
-                      "rgba(99, 102, 241, 0.2)",
-                      "rgba(244, 114, 182, 0.2)"
-                    ]
-                  }}
-                  transition={{
-                    duration: 10,
-                    repeat: Infinity,
-                    ease: "easeInOut"
-                  }}
-                />
-                <motion.stop 
-                  offset="100%" 
-                  stopColor="rgba(168, 85, 247, 0.1)"
-                  animate={{
-                    stopColor: [
-                      "rgba(168, 85, 247, 0.1)",
-                      "rgba(99, 102, 241, 0.1)",
-                      "rgba(244, 114, 182, 0.1)",
-                      "rgba(168, 85, 247, 0.1)"
-                    ]
-                  }}
-                  transition={{
-                    duration: 10,
-                    repeat: Infinity,
-                    ease: "easeInOut"
-                  }}
-                />
-              </radialGradient>
-            </defs>
-            <rect x="0" y="0" width="100" height="100" fill="url(#herogradient)" />
-          </svg>
-        </motion.div>
-        
-        {/* Particles */}
-        {particles.map((particle, index) => (
-          <motion.div
-            key={index}
-            className="absolute rounded-full blur-xl"
-            style={{
-              left: `${particle.x}%`,
-              top: `${particle.y}%`,
-              width: particle.size,
-              height: particle.size,
-              background: particle.color
-            }}
-            animate={{
-              x: [0, Math.random() * 30 - 15],
-              y: [0, Math.random() * 30 - 15],
-            }}
-            transition={{
-              duration: Math.random() * 10 + 10,
-              repeat: Infinity,
-              repeatType: "reverse",
-              ease: "easeInOut",
-              delay: Math.random() * 5
-            }}
-          />
-        ))}
-        
-        {/* Animated grid */}
-        <motion.div 
-          className="absolute inset-0 opacity-10"
-          style={{
-            backgroundImage: 'linear-gradient(rgba(99, 102, 241, 0.2) 1px, transparent 1px), linear-gradient(90deg, rgba(99, 102, 241, 0.2) 1px, transparent 1px)',
-            backgroundSize: '40px 40px'
-          }}
-          animate={{
-            backgroundPosition: ['0px 0px', '40px 40px']
-          }}
-          transition={{
-            duration: 20,
-            repeat: Infinity,
-            ease: "linear"
-          }}
-        />
+        {/* Static gradient background, removed animated SVG */}
+        {/* Particles with simple CSS animation */}
+        <div className="absolute inset-0 pointer-events-none">
+          {particles.map((particle, index) => (
+            <div
+              key={index}
+              className="absolute rounded-full blur-xl particle-float"
+              style={{
+                left: `${particle.x}%`,
+                top: `${particle.y}%`,
+                width: particle.size,
+                height: particle.size,
+                background: particle.color,
+                animationDelay: `${index * 0.5}s`
+              }}
+            />
+          ))}
+        </div>
+        {/* Animated grid removed for simplicity */}
       </div>
-      
-      {/* 3D decorative elements */}
-      <motion.div
+      {/* 3D decorative elements - reduced to 3 */}
+      <div
         className="absolute left-[15%] top-[20%] w-24 h-24 md:w-36 md:h-36 rounded-full bg-gradient-to-r from-pink-300 to-pink-400 opacity-20 blur-2xl"
-        animate={floatingAnimation}
+        // Removed Framer Motion, static
       />
-      <motion.div
+      <div
         className="absolute right-[20%] bottom-[30%] w-32 h-32 md:w-48 md:h-48 rounded-full bg-gradient-to-r from-purple-400 to-pink-500 opacity-15 blur-3xl"
-        animate={{
-          ...floatingAnimation,
-          transition: { ...floatingAnimation.transition, delay: 1.5 }
-        }}
+        // Removed Framer Motion, static
       />
-      <motion.div
-        className="absolute right-[25%] top-[10%] w-16 h-16 md:w-24 md:h-24 rounded-full bg-gradient-to-r from-yellow-400 to-orange-300 opacity-20 blur-xl"
-        animate={{
-          ...floatingAnimation,
-          transition: { ...floatingAnimation.transition, delay: 0.8 }
-        }}
-      />
-      
-      {/* New decorative elements */}
-      <motion.div
+      {/* Removed one floating and one pulsing element for simplicity */}
+      <div
         className="absolute left-[25%] bottom-[15%] w-20 h-20 md:w-32 md:h-32 rounded-full bg-gradient-to-r from-indigo-400 to-indigo-600 opacity-20 blur-2xl"
-        animate={pulseAnimation}
+        // Removed Framer Motion, static
       />
-      <motion.div
-        className="absolute left-[65%] top-[30%] w-28 h-28 md:w-40 md:h-40 rounded-full bg-gradient-to-r from-purple-500 to-indigo-500 opacity-10 blur-3xl"
-        animate={pulseAnimation}
-      />
-      
-      {/* Rotating ring */}
-      <motion.div
-        className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] md:w-[500px] md:h-[500px] rounded-full border-[1px] border-indigo-300 opacity-20"
-        animate={rotateAnimation}
-      />
-      <motion.div
-        className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] h-[350px] md:w-[600px] md:h-[600px] rounded-full border-[1px] border-purple-300 opacity-10"
-        animate={{
-          ...rotateAnimation,
-          transition: { ...rotateAnimation.transition, duration: 50 }
-        }}
-      />
-      
+      {/* Rotating rings removed for simplicity */}
       {/* Main content */}
       <div className="max-w-screen-xl mx-auto px-8 md:px-12 lg:px-16 py-16 md:py-20 relative z-10">
         <div className="text-center max-w-4xl mx-auto">
@@ -281,6 +177,16 @@ export default function Hero() {
           </div>
         </div>
       </div>
-    </motion.div>
+    </div>
   );
 }
+
+/*
+.particle-float {
+  animation: particleFloat 8s ease-in-out infinite alternate;
+}
+@keyframes particleFloat {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-20px); }
+}
+*/
