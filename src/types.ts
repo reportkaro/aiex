@@ -18,5 +18,12 @@ export interface Pattern {
     guidelines: string[];
     considerations: string[];
     relatedPatterns: string[];
+    codeExamples?: {
+      title: string;
+      description: string;
+      language: string;
+      code: string;
+      componentId?: string;
+    }[];
   };
 } 

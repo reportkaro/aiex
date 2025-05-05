@@ -1,5 +1,18 @@
 import React, { useState } from 'react';
 
+// Add icons and illustrations
+const aiIcon = "https://img.icons8.com/fluency/96/artificial-intelligence.png";
+const humanIcon = "https://img.icons8.com/fluency/96/person-male.png";
+const loopIcon = "https://img.icons8.com/fluency/96/refresh.png";
+const moderationIllustration = "https://img.icons8.com/color/480/content-moderation.png";
+
+// Examples in the wild images
+const exampleImages = {
+  googleFace: "/images/examples/google-face-detection.gif",
+  openai: "/images/examples/openai-human-feedback.png",
+  grammarly: "/images/examples/grammarly-suggestions.gif"
+};
+
 const posts = [
   {
     user: "@alice",
@@ -78,7 +91,10 @@ function TextModerationDemo() {
   return (
     <div className="bg-white border border-gray-200 rounded-lg shadow-sm overflow-hidden h-full flex flex-col">
       <div className="bg-gray-50 p-5 border-b border-gray-200">
-        <h3 className="text-xl font-semibold text-gray-800">Text Post Moderation</h3>
+        <div className="flex items-center gap-3">
+          <img src={aiIcon} alt="AI" className="w-6 h-6" />
+          <h3 className="text-xl font-semibold text-gray-800">Text Post Moderation</h3>
+        </div>
         <p className="text-gray-700 text-sm mt-2">
           Review AI-flagged social media posts and make the final moderation decision.
         </p>
@@ -146,7 +162,10 @@ function ImageModerationDemo() {
   return (
     <div className="bg-white border border-gray-200 rounded-lg shadow-sm overflow-hidden h-full flex flex-col">
       <div className="bg-gray-50 p-5 border-b border-gray-200">
-        <h3 className="text-xl font-semibold text-gray-800">Image Moderation</h3>
+        <div className="flex items-center gap-3">
+          <img src={aiIcon} alt="AI" className="w-6 h-6" />
+          <h3 className="text-xl font-semibold text-gray-800">Image Moderation</h3>
+        </div>
         <p className="text-gray-700 text-sm mt-2">
           Review AI-flagged user-uploaded images and make the final moderation decision.
         </p>
@@ -199,11 +218,108 @@ function ImageModerationDemo() {
   );
 }
 
+function ExamplesInTheWild() {
+  return (
+    <div className="bg-white rounded-lg shadow-sm p-6 border border-gray-200">
+      <h2 className="text-2xl font-bold text-gray-800 mb-4">Examples in the Wild</h2>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        
+        {/* Grammarly Writing Assistant */}
+        <div className="border border-gray-200 rounded-lg overflow-hidden">
+          <img 
+            src={exampleImages.grammarly} 
+            alt="Grammarly writing suggestions" 
+            className="w-full h-48 object-cover"
+          />
+          <div className="p-4">
+            <h3 className="font-semibold text-lg text-gray-800">Grammarly Writing Assistant</h3>
+            <p className="text-sm text-gray-600 mt-2">
+              Grammarly suggests grammar, spelling, and style improvements as users write, but requires 
+              human approval before changes are applied, maintaining user control over the final text.
+            </p>
+          </div>
+        </div>
+        
+        {/* Google Photos Face Detection */}
+        <div className="border border-gray-200 rounded-lg overflow-hidden">
+          <img 
+            src={exampleImages.googleFace} 
+            alt="Google Photos face detection" 
+            className="w-full h-48 object-cover"
+          />
+          <div className="p-4">
+            <h3 className="font-semibold text-lg text-gray-800">Google Photos Face Detection</h3>
+            <p className="text-sm text-gray-600 mt-2">
+              Google Photos automatically detects faces in images but relies on users to confirm identities, 
+              allowing humans to verify AI suggestions before they're applied.
+            </p>
+          </div>
+        </div>
+        
+        {/* OpenAI Human Feedback */}
+        <div className="border border-gray-200 rounded-lg overflow-hidden">
+          <img 
+            src={exampleImages.openai} 
+            alt="OpenAI human feedback" 
+            className="w-full h-48 object-cover"
+          />
+          <div className="p-4">
+            <h3 className="font-semibold text-lg text-gray-800">OpenAI RLHF</h3>
+            <p className="text-sm text-gray-600 mt-2">
+              OpenAI uses Reinforcement Learning from Human Feedback (RLHF) to improve their models, 
+              having humans rate AI outputs to train reward models that guide further refinement.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function HumanInTheLoopDemo() {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-      <TextModerationDemo />
-      <ImageModerationDemo />
+    <div className="space-y-8">
+      {/* Header with illustration */}
+      <div className="bg-white rounded-lg shadow-sm p-6 border border-gray-200">
+        <div className="flex flex-col md:flex-row items-center gap-6">
+          <img 
+            src={moderationIllustration} 
+            alt="Content moderation" 
+            className="w-32 h-32 object-contain"
+          />
+          <div>
+            <h2 className="text-2xl font-bold text-gray-800 mb-2">Human-in-the-Loop AI Moderation</h2>
+            <p className="text-gray-600">
+              This pattern demonstrates how AI can flag potentially problematic content for human review,
+              creating an effective collaboration between automated systems and human judgment.
+            </p>
+            <div className="flex items-center gap-4 mt-4">
+              <div className="flex flex-col items-center">
+                <img src={aiIcon} alt="AI" className="w-10 h-10" />
+                <span className="text-xs text-gray-500 mt-1">AI Flags</span>
+              </div>
+              <div className="w-8 h-0.5 bg-gray-300"></div>
+              <div className="flex flex-col items-center">
+                <img src={humanIcon} alt="Human" className="w-10 h-10" />
+                <span className="text-xs text-gray-500 mt-1">Human Decides</span>
+              </div>
+              <div className="w-8 h-0.5 bg-gray-300"></div>
+              <div className="flex flex-col items-center">
+                <img src={loopIcon} alt="Feedback loop" className="w-10 h-10" />
+                <span className="text-xs text-gray-500 mt-1">System Learns</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <TextModerationDemo />
+        <ImageModerationDemo />
+      </div>
+
+      {/* Examples in the Wild section */}
+      <ExamplesInTheWild />
     </div>
   );
 }

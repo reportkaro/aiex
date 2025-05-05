@@ -1,24 +1,37 @@
+export interface Example {
+  title: string;
+  description: string;
+  image: string;
+  altText: string;
+  url?: string;
+}
+
+export interface CodeExample {
+  code: string;
+  language: string;
+  title: string;
+  description: string;
+  componentId?: string;
+}
+
+export interface PatternContent {
+  problem: string;
+  solution: string;
+  examples: Example[];
+  codeExamples?: CodeExample[];
+  guidelines: string[];
+  considerations: string[];
+  relatedPatterns: string[];
+}
+
 export interface Pattern {
   id: string;
   title: string;
   slug: string;
-  description: string;
   category: string;
-  categoryColor: string;
-  imageUrl?: string;
-  featured: boolean;
-  content: {
-    problem: string;
-    solution: string;
-    examples: Array<{
-      title: string;
-      description: string;
-      imageUrl?: string;
-    }>;
-    guidelines: string[];
-    considerations: string[];
-    relatedPatterns: string[];
-  };
+  description: string;
+  thumbnail: string;
+  content: PatternContent;
 }
 
 export interface Category {
