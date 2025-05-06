@@ -8,8 +8,10 @@ export async function generateStaticParams() {
   }));
 }
 
-export default async function PatternPage({ params }: { params: { slug: string } }) {
-  const slug = params.slug;
+export default async function PatternPage({ params }: { params: Promise<{ slug: string }> }) {
+  // Await the params to get the slug
+  const resolvedParams = await params;
+  const slug = resolvedParams.slug;
   
   // Find the pattern
   const pattern = patterns.find((p) => p.slug === slug);
