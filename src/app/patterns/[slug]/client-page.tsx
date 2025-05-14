@@ -1,6 +1,5 @@
 'use client';
 
-import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import Carousel from '@/components/ui/Carousel';
@@ -14,38 +13,25 @@ interface ClientPageProps {
 }
 
 export default function ClientPage({ pattern, previousPattern, nextPattern }: ClientPageProps) {
-  const [isLoading, setIsLoading] = useState(true);
-
-  // Simulate loading to ensure smooth transition
-  useEffect(() => {
-    setIsLoading(true);
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 300);
-    return () => clearTimeout(timer);
-  }, [pattern.slug]);
-
-  // Animation variants
+  // Fast, minimal animations for better performance
   const containerVariants = {
-    hidden: { opacity: 0, y: 30 },
+    hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      y: 0,
       transition: {
         when: "beforeChildren",
-        staggerChildren: 0.15,
-        duration: 0.6,
-        ease: [0.22, 1, 0.36, 1]
+        staggerChildren: 0.01, // Reduced stagger time
+        duration: 0.1,        // Faster animation 
+        ease: "easeOut"
       }
     }
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
+    hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      y: 0,
-      transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] }
+      transition: { duration: 0.1, ease: "easeOut" } // Faster animation
     }
   };
 

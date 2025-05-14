@@ -70,6 +70,32 @@ const ConfidenceIndicatorDemo = dynamic(
   }
 );
 
+// Dynamically import the AdaptiveDashboardDemo component
+const AdaptiveDashboardDemo = dynamic(
+  () => import('@/components/examples/AdaptiveDashboardDemo'),
+  { 
+    ssr: false,
+    loading: () => (
+      <div className="flex items-center justify-center h-64">
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500"></div>
+      </div>
+    )
+  }
+);
+
+// Dynamically import the AdaptiveLearningDemo component
+const AdaptiveLearningDemo = dynamic(
+  () => import('@/components/examples/AdaptiveLearningDemo'),
+  { 
+    ssr: false,
+    loading: () => (
+      <div className="flex items-center justify-center h-64">
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500"></div>
+      </div>
+    )
+  }
+);
+
 interface CodeExampleBlockProps {
   code: string;
   language: string;
@@ -113,6 +139,10 @@ export default function CodeExampleBlock({
         return <ConversationalUiDemo />;
       case 'confidence-indicator':
         return <ConfidenceIndicatorDemo />;
+      case 'adaptive-dashboard':
+        return <AdaptiveDashboardDemo />;
+      case 'adaptive-learning':
+        return <AdaptiveLearningDemo />;
       default:
         return (
           <div className="flex items-center justify-center h-64 text-gray-500">

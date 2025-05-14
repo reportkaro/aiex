@@ -20,12 +20,72 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
+## Image Optimization
+
+This project includes automatic image optimization for better performance. Images are automatically processed during the build phase to ensure optimal delivery.
+
+### Image Formats
+
+For best performance, use the following formats when adding new images:
+
+| Use Case | Recommended Format | Benefits |
+|----------|-------------------|-----------|
+| Photos, Illustrations | `.webp` | 25-35% smaller than JPEG, supports transparency |
+| Icons, Logos | `.webp` | Small file size, supports transparency |
+| Animated Content | `.webm` | Better compression than GIF, smoother playback |
+| Hero Images | `.avif` | Best compression, highest quality |
+| Images with Transparency | `.webp` | Supports alpha channel, smaller than PNG |
+
+### Image Optimization Script
+
+The project includes an automatic image optimization script that:
+- Resizes large images to a maximum width of 1920px
+- Generates WebP and AVIF versions for better browser support
+- Converts large GIFs to WebM and MP4 formats
+- Compresses images while maintaining quality
+- Preserves original files as fallbacks
+
+To run the optimization manually:
+```bash
+npm run optimize-images
+```
+
+### Image Directory Structure
+
+Images are organized in the following structure:
+```
+public/
+  images/
+    examples/     # Example images and demos
+    placeholders/ # Placeholder images
+    categories/   # Category-specific images
+```
+
+### Best Practices
+
+1. **Image Sizes**:
+   - Keep original images under 1920px width
+   - Use appropriate compression (80% quality is default)
+   - Consider using responsive images for different screen sizes
+
+2. **Adding New Images**:
+   - Place images in the appropriate subdirectory
+   - Use WebP format for static images
+   - Use WebM for animations
+   - The build process will automatically optimize them
+
+3. **Performance Monitoring**:
+   - Monitor Core Web Vitals
+   - Check image loading performance in Lighthouse
+   - Use Next.js Analytics for real-world performance data
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:
 
 - [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
 - [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- [Next.js Image Optimization](https://nextjs.org/docs/app/building-your-application/optimizing/images) - detailed guide on image optimization.
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 

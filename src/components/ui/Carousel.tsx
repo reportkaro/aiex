@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import OptimizedMedia from "./OptimizedMedia";
 
 interface Example {
   imagePath?: string;
@@ -21,21 +22,17 @@ export default function Carousel({ examples }: { examples: Example[] }) {
       <div className="w-full grid grid-cols-1 md:grid-cols-10 gap-6 bg-white rounded-lg overflow-hidden">
         {/* Left side: Image with navigation (takes 7/10 width on desktop) */}
         <div className="md:col-span-7 relative">
-          {example.imagePath && example.imagePath.endsWith('.mp4') ? (
-            <video
-              src={example.imagePath}
-              controls
-              className="w-full h-64 md:h-[30rem] object-contain bg-gray-50 p-2"
-              poster=""
-            >
-              Your browser does not support the video tag.
-            </video>
-          ) : (
-            <img
-              src={example.imagePath}
-              alt={example.title}
-              className="w-full h-64 md:h-[30rem] object-contain bg-gray-50 p-2"
-            />
+          {example.imagePath && (
+            <div className="w-full h-64 md:h-[30rem] bg-gray-50 p-2">
+              <OptimizedMedia
+                src={example.imagePath}
+                alt={example.title}
+                className="w-full h-full"
+                width={800}
+                height={600}
+                priority={current === 0} // Only prioritize the first image
+              />
+            </div>
           )}
           
           {/* Navigation buttons */}
