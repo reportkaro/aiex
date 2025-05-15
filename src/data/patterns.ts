@@ -1,6 +1,6 @@
 import { Pattern } from '../types';
 
-const patterns: Pattern[] = [
+export const patterns: Pattern[] = [
   {
     id: "contextual-assistance",
     title: "Contextual Assistance",

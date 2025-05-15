@@ -1,14 +1,21 @@
 import { notFound } from 'next/navigation';
-import patterns from '@/data/patterns';
+import { patterns } from '@/data/patterns';
 import ClientPage from './client-page';
 
 export async function generateStaticParams() {
+  if (!patterns) {
+    return [];
+  }
   return patterns.map((pattern) => ({
     slug: pattern.slug,
   }));
 }
 
 export default async function PatternPage({ params }: { params: Promise<{ slug: string }> }) {
+  if (!patterns) {
+    notFound();
+  }
+
   // Await the params to get the slug
   const resolvedParams = await params;
   const slug = resolvedParams.slug;
