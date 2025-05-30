@@ -1,8 +1,11 @@
 import React from 'react';
 import Link from 'next/link';
-import patterns from '@/data/patterns';
+import { loadAllPatterns } from '@/data/patterns/utils/pattern-loader';
 
-export default function PatternsPage() {
+export default async function PatternsPage() {
+  // Load patterns
+  const patterns = await loadAllPatterns();
+
   // Group patterns by category
   const patternsByCategory = patterns.reduce((acc, pattern) => {
     if (!acc[pattern.category]) {

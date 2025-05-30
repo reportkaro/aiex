@@ -1,0 +1,1 @@
+export const contextualAssistanceDemoCode = `// Placeholder code. This will be overwritten by the build script.`; 

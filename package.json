@@ -7,9 +7,12 @@
     "build": "npm run optimize-images && next build",
     "start": "next start",
     "lint": "next lint",
+    "test": "echo \"No tests specified\" && exit 0",
     "convert-gifs": "node scripts/convert-gifs.js",
     "optimize-images": "node scripts/optimize-images.js",
-    "prepare": "husky"
+    "prepare": "husky",
+    "fix-patterns": "ts-node src/data/patterns/utils/fix-patterns.ts",
+    "prebuild": "node scripts/inject-contextual-assistance-code.js"
   },
   "dependencies": {
     "@heroicons/react": "^2.2.0",
@@ -20,7 +23,8 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-syntax-highlighter": "^15.6.1",
-    "sharp": "^0.33.2"
+    "sharp": "^0.33.2",
+    "task-master-ai": "^0.13.2"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
@@ -36,6 +40,7 @@
     "lint-staged": "^16.0.0",
     "prettier": "^3.5.3",
     "tailwindcss": "^4",
+    "ts-node": "^10.9.2",
     "typescript": "^5"
   }
 }
