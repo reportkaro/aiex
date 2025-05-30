@@ -1,4 +1,4 @@
-import { Pattern } from '../types';
+import { Pattern } from '../../types';
 import { loadAllPatterns } from './utils/pattern-loader';
 
 // Load all patterns
