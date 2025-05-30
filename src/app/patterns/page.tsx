@@ -1,6 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { loadAllPatterns } from '@/data/patterns/utils/pattern-loader';
+import { Pattern } from '@/types';
 
 export default async function PatternsPage() {
   // Load patterns
@@ -66,10 +67,10 @@ export default async function PatternsPage() {
             {category.name}
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {patternsByCategory[category.name].map((pattern) => (
+            {patternsByCategory[category.name].map((pattern: Pattern) => (
               <Link key={pattern.id} href={`/patterns/${pattern.slug}`}>
                 <div className="border border-gray-200 rounded-lg p-6 hover:shadow-md hover:border-blue-300 transition-all duration-300">
-                  <span className={`inline-block px-3 py-1 rounded-full text-sm font-medium bg-${pattern.categoryColor}-100 text-${pattern.categoryColor}-800 mb-3`}>
+                  <span className={`inline-block px-3 py-1 rounded-full text-sm font-medium bg-blue-100 text-blue-800 mb-3`}>
                     {pattern.category}
                   </span>
                   <h3 className="text-xl font-bold mb-2">{pattern.title}</h3>
