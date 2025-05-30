@@ -2,9 +2,12 @@ import { notFound } from 'next/navigation';
 import { loadPattern } from '@/data/patterns/utils/pattern-loader';
 import ClientPage from './client-page';
 
-export default async function PatternPage({ params }: { params: { slug: string } }) {
+export default async function PatternPage({ params }: { params: Promise<{ slug: string }> }) {
+  // Await params before accessing properties (Next.js 15 requirement)
+  const { slug } = await params;
+  
   // Only load the requested pattern
-  const pattern = await loadPattern(params.slug);
+  const pattern = await loadPattern(slug);
 
   if (!pattern) {
     notFound();
