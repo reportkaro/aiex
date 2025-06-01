@@ -4,25 +4,24 @@ const { Pattern } = require('../types');
 
 const PATTERNS_DIR = path.join(__dirname, '../patterns');
 
-// Helper function to get category based on pattern name
-function getCategory(patternName: string): string {
-  const categoryMap: Record<string, string> = {
-    'human-in-the-loop': 'AI Governance',
-    'progressive-disclosure': 'Information Architecture',
-    'contextual-assistance': 'User Experience',
-    'conversational-ui': 'User Experience',
-    'transparent-feedback': 'User Experience',
-    'adaptive-interfaces': 'User Experience',
-    'multimodal-interaction': 'User Experience',
-    'explainable-ai': 'AI Governance',
-    'responsible-ai-design': 'AI Governance',
-    'error-recovery': 'Error Handling',
-    'collaborative-ai': 'AI Governance',
-    'ambient-intelligence': 'AI Governance',
-    'safe-exploration': 'User Experience',
-    'guided-learning': 'User Experience'
+// Helper function to map pattern names to categories
+function getCategoryFromPatternName(patternName: string): string {
+  const categoryMapping: Record<string, string> = {
+    'human-in-the-loop': 'Human-in-the-Loop',
+    'progressive-disclosure': 'Progressive Disclosure',
+    'contextual-assistance': 'Contextual Assistance',
+    'conversational-ui': 'Conversational UI',
+    'adaptive-interfaces': 'Adaptive Interfaces',
+    'multimodal-interaction': 'Multimodal Interaction',
+    'explainable-ai': 'Explainable AI',
+    'responsible-ai-design': 'Responsible AI Design',
+    'error-recovery': 'Error Recovery',
+    'collaborative-ai': 'Collaborative AI',
+    'ambient-intelligence': 'Ambient Intelligence',
+    'safe-exploration': 'Safe Exploration',
+    'guided-learning': 'Guided Learning'
   };
-  return categoryMap[patternName] || 'General';
+  return categoryMapping[patternName] || 'User Experience';
 }
 
 // Helper function to get tags based on pattern name
@@ -33,7 +32,6 @@ function getTags(patternName: string, category: string): string[] {
     'progressive-disclosure': ['Information Architecture', 'Usability', 'Cognitive Load'],
     'contextual-assistance': ['Help System', 'Proactive Assistance', 'User Guidance'],
     'conversational-ui': ['Natural Language', 'Dialogue', 'Interaction'],
-    'transparent-feedback': ['User Feedback', 'System Status', 'Clarity'],
     'adaptive-interfaces': ['Personalization', 'User Adaptation', 'Dynamic UI'],
     'multimodal-interaction': ['Multiple Inputs', 'Accessibility', 'Flexible Interaction'],
     'explainable-ai': ['Transparency', 'Trust', 'Understanding'],
@@ -79,7 +77,7 @@ async function fixPatternFile(filePath: string) {
     
     // Extract the pattern name from the file path
     const patternName = path.basename(path.dirname(filePath));
-    const category = getCategory(patternName);
+    const category = getCategoryFromPatternName(patternName);
     const tags = getTags(patternName, category);
 
     // Create the fixed pattern content

@@ -134,6 +134,7 @@ export default function CodeExampleBlock({
       case 'human-in-the-loop-moderation':
         return <HumanInTheLoopModeration />;
       case 'progressive-disclosure-email':
+      case 'progressive-disclosure-email-demo':
         return <ProgressiveDisclosureEmailDemo />;
       case 'conversational-ui-bot':
         return <ConversationalUiDemo />;

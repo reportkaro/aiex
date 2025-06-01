@@ -18,10 +18,6 @@ export const getPatternsByCategory = (category: string): Pattern[] => {
   return patterns.filter(pattern => pattern.category === category);
 };
 
-export const getFeaturedPatterns = (): Pattern[] => {
-  return patterns.filter(pattern => pattern.featured);
-};
-
 // Lazy loading for code examples
 export const loadCodeExample = async (patternId: string, exampleId: string) => {
   try {

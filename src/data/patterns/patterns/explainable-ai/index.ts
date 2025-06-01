@@ -1,6 +1,6 @@
 import { Pattern } from '../../../../types';
 
-export const explainableAIPattern: Pattern = {
+export const explainableai: Pattern = {
   id: "explainable-ai",
   title: "Explainable AI (XAI)",
   slug: "explainable-ai",
@@ -12,16 +12,10 @@ export const explainableAIPattern: Pattern = {
     solution: "Provide clear explanations of how AI systems reach their conclusions. Use visualizations, natural language explanations, and interactive elements to help users understand the reasoning process, data sources, and confidence levels behind AI decisions.",
     examples: [
       {
-        title: "OpenAI ChatGPT Reasoning",
-        description: "Shows step-by-step reasoning for complex problems, breaking down the thought process and explaining how conclusions are reached.",
-        image: "/images/examples/chatgpt-reasoning.png",
-        altText: "ChatGPT step-by-step reasoning explanation"
-      },
-      {
-        title: "Google AI Search Results",
-        description: "Provides source attribution and explains why certain results are ranked higher, showing the factors that influenced the AI's decision.",
-        image: "/images/examples/google-ai-explanation.png",
-        altText: "Google AI search result explanations"
+        title: "Claude Reasoning",
+        description: "Shows detailed step-by-step thinking process, breaking down complex problems into logical steps and explaining the reasoning behind each conclusion.",
+        image: "/images/examples/claude-reasoning.png",
+        altText: "Claude step-by-step reasoning explanation"
       },
       {
         title: "Perplexity AI Citations",
@@ -30,10 +24,10 @@ export const explainableAIPattern: Pattern = {
         altText: "Perplexity AI source attribution"
       },
       {
-        title: "Medical AI Diagnosis Explanation",
-        description: "Highlights which symptoms, test results, and risk factors contributed to a diagnostic recommendation, with confidence scores.",
-        image: "/images/examples/medical-ai-explanation.png",
-        altText: "Medical AI diagnosis explanation"
+        title: "Hugging Face Model Cards",
+        description: "Provides detailed documentation explaining model capabilities, limitations, training data, and potential biases, helping users understand how AI models make decisions.",
+        image: "/images/examples/huggingface-model-cards.png",
+        altText: "Hugging Face model card showing detailed AI model explanations"
       }
     ],
     guidelines: [

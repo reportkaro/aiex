@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 
 const sourcePath = path.join(__dirname, '../src/components/examples/ContextualAssistanceDemo.tsx');
-const destPath = path.join(__dirname, '../src/data/patterns/patterns/contextual-assistance/_code/contextual-assistance-demo.ts');
+const destPath = path.join(__dirname, '../src/data/patterns/patterns/contextual-assistance/_code/contextual-assistance-demo.js');
 
 function escapeForTemplateLiteral(str) {
   return str.replace(/\\/g, '\\\\').replace(/`/g, '\\`');

@@ -1,6 +1,7 @@
 import { Pattern } from '../../../../types';
+import { codeExamples } from './code-examples';
 
-export const humanInTheLoopPattern: Pattern = {
+export const humanintheloop: Pattern = {
   id: "human-in-the-loop",
   title: "Human-in-the-Loop",
   slug: "human-in-the-loop",
@@ -8,61 +9,47 @@ export const humanInTheLoopPattern: Pattern = {
   description: "Balance automation with human oversight and intervention for critical decisions, ensuring AI augments rather than replaces human judgment.",
   thumbnail: "/images/examples/grammarly-suggestions.gif",
   content: {
-    problem: "Fully automated AI systems can make errors, lack context, or produce results that don't align with human values and intentions. Users need control over AI decisions, especially for high-stakes or creative tasks.",
-    solution: "Design AI systems that keep humans in the decision-making loop at critical points. Provide clear opportunities for human review, approval, and intervention. Make it easy for users to understand, modify, or override AI suggestions while maintaining the benefits of automation.",
+    problem: "Fully automated AI systems can make critical errors, lack transparency, or fail in edge cases. In high-stakes or ambiguous situations, users need the ability to review, override, or guide AI decisions to ensure safety, compliance, and trust.",
+    solution: "Design systems where humans can intervene, review, or approve AI outputs—especially for critical decisions. Provide clear handoff points, easy override mechanisms, and transparent explanations so users can confidently collaborate with AI.",
     examples: [
       {
-        title: "Grammarly Writing Suggestions",
-        description: "AI suggests grammar and style improvements, but users review and choose which suggestions to accept, reject, or modify.",
+        title: "Grammarly Writing Assistant",
+        description: "Grammarly suggests grammar, spelling, and style improvements as users write, but requires human approval before changes are applied, maintaining user control over the final text.",
         image: "/images/examples/grammarly-suggestions.gif",
         altText: "Grammarly human-in-the-loop suggestions"
       },
       {
-        title: "GitHub Copilot Code Review",
-        description: "AI generates code suggestions that developers can review, edit, and approve before committing to their codebase.",
-        image: "/images/examples/github-copilot-review.gif",
-        altText: "GitHub Copilot code review process"
+        title: "Google Photos Face Detection",
+        description: "Google Photos automatically detects faces in images but relies on users to confirm identities, allowing humans to verify AI suggestions before they're applied.",
+        image: "/images/examples/google-face-detection.gif",
+        altText: "Google Photos face detection"
       },
       {
-        title: "Content Moderation Systems",
-        description: "AI flags potentially problematic content for human moderators to review and make final decisions on removal or approval.",
-        image: "/images/examples/content-moderation-hitl.png",
-        altText: "Human-in-the-loop content moderation"
-      },
-      {
-        title: "Medical Diagnosis AI",
-        description: "AI assists doctors by highlighting potential diagnoses and risk factors, but medical professionals make the final diagnostic decisions.",
-        image: "/images/examples/medical-ai-assistance.png",
-        altText: "Medical AI with human oversight"
+        title: "OpenAI RLHF",
+        description: "OpenAI uses Reinforcement Learning from Human Feedback (RLHF) to improve their models, having humans rate AI outputs to train reward models that guide further refinement.",
+        image: "/images/examples/openai-human-feedback.png",
+        altText: "OpenAI human feedback"
       }
     ],
+    codeExamples,
     guidelines: [
-      "Clearly indicate when AI is making suggestions vs. taking actions",
-      "Provide easy ways to review, modify, or reject AI recommendations",
-      "Show confidence levels or uncertainty indicators for AI decisions",
-      "Allow users to provide feedback to improve future AI performance",
-      "Design clear approval workflows for high-stakes decisions",
-      "Maintain audit trails of human interventions and AI actions",
-      "Provide undo/redo functionality for AI-assisted actions",
-      "Enable batch review and approval for efficiency",
-      "Offer different levels of automation based on user preference and context"
+      "Clearly indicate when human review is required or possible",
+      "Make it easy to override, correct, or provide feedback on AI outputs",
+      "Log interventions for transparency and improvement",
+      "Provide explanations for AI decisions to support human judgment",
+      "Design workflows that minimize friction in the handoff between AI and human"
     ],
     considerations: [
-      "Determine which decisions require human oversight vs. full automation",
-      "Balance efficiency gains with the need for human control",
-      "Consider the cognitive load of constant review and approval",
-      "Design for different expertise levels and trust in AI systems",
-      "Account for time-sensitive decisions where human review may not be feasible",
-      "Consider legal and regulatory requirements for human oversight",
-      "Plan for scenarios where humans and AI disagree",
-      "Ensure the system gracefully handles human unavailability",
-      "Monitor for automation bias where humans over-rely on AI suggestions"
+      "Balance efficiency with safety—too many interventions can slow down workflows",
+      "Ensure humans are not overwhelmed with too many review requests",
+      "Address potential bias in both AI and human decisions",
+      "Provide training and support for users in review roles",
+      "Monitor and refine the threshold for when human-in-the-loop is triggered"
     ],
     relatedPatterns: [
       "Transparent Feedback",
-      "Explainable AI",
-      "Error Recovery",
-      "Responsible AI Design"
+      "Contextual Assistance",
+      "Progressive Disclosure"
     ]
   }
 }; 

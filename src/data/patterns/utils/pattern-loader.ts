@@ -1,4 +1,4 @@
-import { Pattern } from '../../types';
+import { Pattern } from '../../../types';
 
 /**
  * Attempts to load a pattern using the new modular structure first,
@@ -23,6 +23,7 @@ export const loadPattern = async (patternId: string): Promise<Pattern | null> =>
 
 /**
  * Loads all patterns, supporting both old and new structures
+ * Only includes patterns that actually exist
  */
 export const loadAllPatterns = async (): Promise<Pattern[]> => {
   const patternIds = [
@@ -30,16 +31,7 @@ export const loadAllPatterns = async (): Promise<Pattern[]> => {
     'progressive-disclosure',
     'human-in-the-loop',
     'conversational-ui',
-    'transparent-feedback',
-    'adaptive-interfaces',
-    'multimodal-interaction',
-    'explainable-ai',
-    'responsible-ai-design',
-    'error-recovery',
-    'collaborative-ai',
-    'ambient-intelligence',
-    'safe-exploration',
-    'guided-learning'
+    'explainable-ai'
   ];
 
   const patterns = await Promise.all(

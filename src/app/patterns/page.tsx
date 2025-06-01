@@ -2,10 +2,17 @@ import React from 'react';
 import Link from 'next/link';
 import { loadAllPatterns } from '@/data/patterns/utils/pattern-loader';
 import { Pattern } from '@/types';
+import categories from '@/data/categories';
 
 export default async function PatternsPage() {
   // Load patterns
   const patterns = await loadAllPatterns();
+
+  // Create a mapping from category name to color
+  const categoryColorMap = categories.reduce((acc, category) => {
+    acc[category.title] = category.color;
+    return acc;
+  }, {} as Record<string, string>);
 
   // Group patterns by category
   const patternsByCategory = patterns.reduce((acc, pattern) => {
@@ -17,11 +24,10 @@ export default async function PatternsPage() {
   }, {} as Record<string, typeof patterns>);
 
   // Get unique categories with their colors
-  const categories = Object.keys(patternsByCategory).map(category => {
-    const pattern = patternsByCategory[category][0];
+  const categoriesWithColors = Object.keys(patternsByCategory).map(category => {
     return {
       name: category,
-      color: pattern.categoryColor
+      color: categoryColorMap[category] || 'blue' // fallback to blue if no color found
     };
   });
 
@@ -43,7 +49,7 @@ export default async function PatternsPage() {
 
       {/* Categories filter tabs */}
       <div className="flex flex-wrap gap-2 mb-8">
-        {categories.map(category => (
+        {categoriesWithColors.map(category => (
           <a 
             key={category.name}
             href={`#${category.name.toLowerCase().replace(/\s+/g, '-')}`}
@@ -61,7 +67,7 @@ export default async function PatternsPage() {
       </div>
       
       {/* Patterns by category */}
-      {categories.map(category => (
+      {categoriesWithColors.map(category => (
         <div key={category.name} id={category.name.toLowerCase().replace(/\s+/g, '-')} className="mb-12">
           <h2 className={`text-2xl font-bold mb-6 pb-2 border-b-2 border-${category.color}-300`}>
             {category.name}

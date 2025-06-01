@@ -1,6 +1,7 @@
 import { Pattern } from '../../../../types';
+import { codeExamples } from './code-examples';
 
-export const conversationalUIPattern: Pattern = {
+export const conversationalui: Pattern = {
   id: "conversational-ui",
   title: "Conversational UI",
   slug: "conversational-ui",
@@ -18,24 +19,19 @@ export const conversationalUIPattern: Pattern = {
         altText: "Slack AI conversational interface"
       },
       {
-        title: "ChatGPT Interface",
-        description: "Maintains conversation history, understands references to previous messages, and adapts its communication style based on user preferences.",
-        image: "/images/examples/chatgpt-conversation.png",
-        altText: "ChatGPT conversational interface"
+        title: "Microsoft Copilot",
+        description: "Provides intelligent assistance across Microsoft 365 applications, understanding context from documents, emails, and meetings to offer relevant suggestions and automate tasks through natural conversation.",
+        image: "/images/examples/microsoft-copilot.gif",
+        altText: "Microsoft Copilot conversational interface"
       },
       {
-        title: "Voice Assistants (Alexa/Siri)",
-        description: "Handle natural speech patterns, interruptions, and follow-up questions while maintaining conversational flow.",
-        image: "/images/examples/voice-assistant-ui.png",
-        altText: "Voice assistant conversational interface"
-      },
-      {
-        title: "Customer Service Chatbots",
-        description: "Guide users through complex support scenarios using natural conversation while seamlessly escalating to human agents when needed.",
-        image: "/images/examples/customer-service-chat.png",
-        altText: "Customer service conversational interface"
+        title: "Siri",
+        description: "Apple's voice assistant that handles natural speech patterns, maintains conversation context, and integrates seamlessly with iOS ecosystem to perform tasks through voice commands and follow-up questions.",
+        image: "/images/examples/siri-conversation.gif",
+        altText: "Siri voice assistant conversational interface"
       }
     ],
+    codeExamples,
     guidelines: [
       "Use natural language patterns and avoid overly formal or robotic responses",
       "Maintain conversation context and reference previous interactions appropriately",

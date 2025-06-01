@@ -42,12 +42,12 @@ const categories: Category[] = [
     image: "/images/examples/slack-ai.gif"
   },
   {
-    id: "transparent-feedback",
-    title: "Transparent Feedback",
-    description: "Communicate AI system capabilities, limitations, and confidence levels clearly",
-    slug: "transparent-feedback",
-    color: "pink",
-    image: "/images/examples/perplexity-attribution.gif"
+    id: "explainable-ai",
+    title: "Explainable AI (XAI)",
+    description: "Make AI decision-making processes understandable through visualizations and explanations",
+    slug: "explainable-ai",
+    color: "sky",
+    image: "/images/examples/openai-human-feedback.png"
   },
   {
     id: "adaptive-interfaces",
@@ -80,14 +80,6 @@ const categories: Category[] = [
     slug: "augmented-creation",
     color: "orange",
     image: "/images/examples/github-copilot-highlighting.gif"
-  },
-  {
-    id: "explainable-ai",
-    title: "Explainable AI (XAI)",
-    description: "Make AI decision-making processes understandable through visualizations and explanations",
-    slug: "explainable-ai",
-    color: "sky",
-    image: "/images/examples/openai-human-feedback.png"
   },
   {
     id: "responsible-ai-design",

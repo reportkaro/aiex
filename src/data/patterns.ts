@@ -1,16 +1,16 @@
 import { Pattern } from '../types';
 import { contextualassistance } from './patterns/patterns/contextual-assistance';
-import { progressiveDisclosurePattern } from './patterns/patterns/progressive-disclosure';
-import { humanInTheLoopPattern } from './patterns/patterns/human-in-the-loop';
-import { explainableAIPattern } from './patterns/patterns/explainable-ai';
-import { conversationalUIPattern } from './patterns/patterns/conversational-ui';
+import { progressivedisclosure } from './patterns/patterns/progressive-disclosure';
+import { humanintheloop } from './patterns/patterns/human-in-the-loop';
+import { explainableai } from './patterns/patterns/explainable-ai';
+import { conversationalui } from './patterns/patterns/conversational-ui';
 
 export const patterns: Pattern[] = [
   contextualassistance,
-  progressiveDisclosurePattern,
-  humanInTheLoopPattern,
-  explainableAIPattern,
-  conversationalUIPattern
+  progressivedisclosure,
+  humanintheloop,
+  explainableai,
+  conversationalui
 ];
 
 export default patterns;
