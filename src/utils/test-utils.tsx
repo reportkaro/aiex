@@ -57,19 +57,6 @@ export const createMockPattern = (overrides: Partial<Pattern> = {}): Pattern => 
   ...overrides,
 })
 
-// Helper functions for testing
-export const expectElementToBeInDocument = (element: HTMLElement | null) => {
-  expect(element).toBeInTheDocument()
-}
-
-export const expectElementToHaveText = (element: HTMLElement | null, text: string) => {
-  expect(element).toHaveTextContent(text)
-}
-
-export const expectElementToHaveClass = (element: HTMLElement | null, className: string) => {
-  expect(element).toHaveClass(className)
-}
-
 // Async test helpers
 export const waitForElementToAppear = async (getByTestId: (id: string) => HTMLElement, testId: string) => {
   const element = await new Promise<HTMLElement>((resolve) => {
