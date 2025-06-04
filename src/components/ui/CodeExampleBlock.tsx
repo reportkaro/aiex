@@ -96,6 +96,19 @@ const AdaptiveLearningDemo = dynamic(
   }
 );
 
+// Dynamically import the MultimodalSearchDemo component
+const MultimodalSearchDemo = dynamic(
+  () => import('@/components/examples/MultimodalSearchDemo'),
+  { 
+    ssr: false,
+    loading: () => (
+      <div className="flex items-center justify-center h-64">
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500"></div>
+      </div>
+    )
+  }
+);
+
 interface CodeExampleBlockProps {
   code: string;
   language: string;
@@ -144,6 +157,8 @@ export default function CodeExampleBlock({
         return <AdaptiveDashboardDemo />;
       case 'adaptive-learning':
         return <AdaptiveLearningDemo />;
+      case 'multimodal-search':
+        return <MultimodalSearchDemo />;
       default:
         return (
           <div className="flex items-center justify-center h-64 text-gray-500">

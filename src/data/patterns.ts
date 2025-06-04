@@ -5,6 +5,7 @@ import { humanintheloop } from './patterns/patterns/human-in-the-loop';
 import { explainableai } from './patterns/patterns/explainable-ai';
 import { conversationalui } from './patterns/patterns/conversational-ui';
 import { adaptiveinterfaces } from './patterns/patterns/adaptive-interfaces';
+import { multimodalinteraction } from './patterns/patterns/multimodal-interaction';
 
 export const patterns: Pattern[] = [
   contextualassistance,
@@ -12,7 +13,8 @@ export const patterns: Pattern[] = [
   humanintheloop,
   explainableai,
   conversationalui,
-  adaptiveinterfaces
+  adaptiveinterfaces,
+  multimodalinteraction
 ];
 
 export default patterns;
