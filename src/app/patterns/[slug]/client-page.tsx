@@ -57,7 +57,7 @@ export default function ClientPage({ pattern, previousPattern, nextPattern }: Cl
       {/* Pattern Header */}
       <motion.div className="mb-10" variants={itemVariants}>
         <h1 className="text-5xl font-bold mt-3 mb-6 text-gray-900">{pattern.title}</h1>
-        <div className="text-xl text-gray-600 leading-relaxed max-w-3xl">
+        <div className="text-xl text-gray-600 leading-relaxed">
           {pattern.description}
         </div>
       </motion.div>

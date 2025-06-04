@@ -6,7 +6,7 @@ export const explainableai: Pattern = {
   slug: "explainable-ai",
   category: "Explainable AI",
   description: "Make AI decision-making processes understandable through visualizations, explanations, and transparent reasoning paths.",
-  thumbnail: "/images/examples/openai-human-feedback.png",
+  thumbnail: "/images/examples/claudethinking.gif",
   content: {
     problem: "AI systems often operate as 'black boxes' where users cannot understand how decisions are made. This lack of transparency reduces trust, makes debugging difficult, and can lead to biased or incorrect decisions going unnoticed.",
     solution: "Provide clear explanations of how AI systems reach their conclusions. Use visualizations, natural language explanations, and interactive elements to help users understand the reasoning process, data sources, and confidence levels behind AI decisions.",
@@ -14,8 +14,8 @@ export const explainableai: Pattern = {
       {
         title: "Claude Reasoning",
         description: "Shows detailed step-by-step thinking process, breaking down complex problems into logical steps and explaining the reasoning behind each conclusion.",
-        image: "/images/examples/claude-reasoning.png",
-        altText: "Claude step-by-step reasoning explanation"
+        image: "/images/examples/claudethinking.gif",
+        altText: "Claude AI step-by-step reasoning process"
       },
       {
         title: "Perplexity AI Citations",
@@ -26,8 +26,8 @@ export const explainableai: Pattern = {
       {
         title: "Hugging Face Model Cards",
         description: "Provides detailed documentation explaining model capabilities, limitations, training data, and potential biases, helping users understand how AI models make decisions.",
-        image: "/images/examples/huggingface-model-cards.png",
-        altText: "Hugging Face model card showing detailed AI model explanations"
+        image: "/images/examples/huggingfacemodels.gif",
+        altText: "Hugging Face Model Card example"
       }
     ],
     guidelines: [
